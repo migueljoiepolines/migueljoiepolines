@@ -10,11 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const urlParams = new URLSearchParams(window.location.search);
         const question = urlParams.get('q');
         if (question) {
-            // Clean the URL by removing the query parameters
-            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            window.history.replaceState({}, document.title, cleanUrl);
-            
-            // Process the question
+            // Process the question without cleaning the URL
             textarea.value = question;
             button.click();
         }
