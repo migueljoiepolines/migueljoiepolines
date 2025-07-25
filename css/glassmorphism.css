@@ -61,6 +61,8 @@
     transition: transform 0.1s ease, background 0.1s ease; /* Faster transitions */
     will-change: transform;
     transform: translateZ(0); /* Hardware acceleration */
+    position: relative;
+    z-index: 100; /* Much higher z-index to ensure visibility */
 }
 
 .glass-message:hover {

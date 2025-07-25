@@ -94,8 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
         msgDiv.className = sender === 'user'
             ? 'flex justify-end'
             : 'flex justify-start';
+        msgDiv.style.position = 'relative';
+        msgDiv.style.zIndex = '200'; // Very high z-index
         const bubble = document.createElement('div');
         bubble.className = 'glass-message max-w-[80%] px-6 py-4 rounded-2xl text-white text-base flex items-start gap-2 text-left';
+        bubble.style.position = 'relative';
+        bubble.style.zIndex = '201'; // Even higher z-index
         if (sender === 'bot') {
             bubble.innerHTML = `<span class="bot-icon flex-shrink-0 mt-1"><img src="image/logo.png" alt="Logo" class="h-5 w-4" /></span><span class="ai-text"></span>`;
         } else {

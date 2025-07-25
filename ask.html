@@ -37,7 +37,7 @@
     </script>
 </head>
 
-<body class="font-figtree min-h-screen bg-black flex flex-col p-0">
+<body class="font-figtree h-screen bg-black flex flex-col p-0 overflow-hidden">
     <!-- Colorful Particles -->
     <div class="particles" id="particles"></div>
     
@@ -48,13 +48,13 @@
         </svg>
     </button>
     
-    <div id="main-content-wrapper" class="w-full flex flex-col items-center justify-start text-center h-screen pt-[26px]">
+    <div id="main-content-wrapper" class="w-full flex flex-col items-center justify-start text-center h-full pt-[26px]">
 
-        <div id="chat-container" class="w-full max-w-3xl mx-auto flex-1 overflow-y-auto pb-6 flex flex-col gap-6 px-4 min-h-0 max-h-[calc(100vh-280px)]"></div>
+        <div id="chat-container" class="w-full max-w-3xl mx-auto overflow-y-auto flex flex-col gap-6 px-4 relative z-50" style="height: calc(100vh - 320px); padding-bottom: 20px;"></div>
 
     </div>
     <!-- Fixed bottom bar -->
-    <div class="fixed bottom-0 left-0 w-full flex flex-col items-center justify-center pt-6 pb-8 z-50 backdrop-blur-lg border-t border-white/10">
+    <div class="fixed bottom-0 left-0 w-full flex flex-col items-center justify-center pt-6 pb-8 z-40 backdrop-blur-lg border-t border-white/10">
             <div class="flex items-center justify-center w-[900px] h-auto mx-auto mb-6 max-w-full">
                 <textarea
                     id="ask-input"
