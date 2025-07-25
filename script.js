@@ -163,10 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function appendMessage(text, sender = 'bot', typing = false) {
-        // Detect if we're in a subfolder to adjust image paths
-        const isInSubfolder = window.location.pathname.includes('/ask/');
-        const imagePath = isInSubfolder ? '../image/' : 'image/';
-        
         const msgDiv = document.createElement('div');
         msgDiv.className = sender === 'user'
             ? 'flex justify-end'
@@ -174,9 +170,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const bubble = document.createElement('div');
         bubble.className = 'max-w-[80%] px-6 py-4 rounded-2xl shadow-lg bg-black/80 border border-white/10 text-white text-base flex items-start gap-2 text-left';
         if (sender === 'bot') {
-            bubble.innerHTML = `<span class="bot-icon flex-shrink-0 mt-1"><img src="${imagePath}logo.png" alt="Logo" class="h-5 w-4" /></span><span class="ai-text"></span>`;
+            bubble.innerHTML = `<span class="bot-icon flex-shrink-0 mt-1"><img src="image/logo.png" alt="Logo" class="h-5 w-4" /></span><span class="ai-text"></span>`;
         } else {
-            bubble.innerHTML = `<span>${text}</span><span class="user-icon ml-2"><img src="${imagePath}userdp.png" class="h-5 w-5 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>`;
+            bubble.innerHTML = `<span>${text}</span><span class="user-icon ml-2"><img src="image/userdp.png" class="h-5 w-5 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>`;
         }
         msgDiv.appendChild(bubble);
         chatContainer.appendChild(msgDiv);
