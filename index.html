@@ -6,16 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web Page</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="magic-cursor.css">
     <script src="script.js" defer></script>
+    <script src="magic-cursor.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    
+    <style>
+        #main-content {
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.5s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.getElementById('ask-input');
+            const sendButton = document.getElementById('send-button');
+            const mainContent = document.getElementById('main-content');
+
+            function redirect() {
+                const question = textarea.value.trim();
+                if (question) {
+                    // Add fade-out animation
+                    mainContent.classList.add('fade-out');
+                    
+                    // Navigate after animation completes
+                    setTimeout(() => {
+                        window.location.href = `ask/?q=${encodeURIComponent(question)}`;
+                    }, 500);
+                }
+            }
+
+            sendButton.addEventListener('click', redirect);
+
+            textarea.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    redirect();
+                }
+            });
+        });
+    </script>
 </head>
 
 <body class="font-figtree min-h-screen bg-black bg-[url('image/bg-1.png')] bg-cover bg-center flex items-center justify-center p-0">
-    <div class="w-full flex flex-col items-center justify-center text-center mt-[-54px]">
+    <div id="main-content" class="w-full flex flex-col items-center justify-center text-center mt-[-54px] transition-opacity duration-500">
         <img src="image/logo.png" alt="Logo" class="mx-auto mt-8 mb-10 w-6 h-auto max-w-full" />
 
         <p class="text-2xl md:text-3xl text-white font-light mb-5">Hey! I am Miguel Joie</p>
@@ -26,10 +87,11 @@
                 id="ask-input"
                 placeholder="Something you wanna ask?"
                 rows="1"
-                class="w-full rounded-full bg-black/80 border border-white/20 text-white px-8 py-6 text-lg focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-300 shadow-lg resize-none transition-all"
+                class="w-full rounded-full bg-black/80 border border-white/20 text-white pl-8 pr-20 py-6 text-lg focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-300 shadow-lg resize-none transition-all"
                 style="min-height:56px; max-height:180px; overflow-y:auto;"
             ></textarea>
             <button
+                id="send-button"
                 class="ml-[-64px] rounded-full p-4 border border-white/20 hover:bg-white/10 transition h-[56px] w-[56px] flex items-center justify-center"
                 aria-label="Send"
             >
@@ -41,7 +103,7 @@
 
         <div class="flex flex-wrap justify-center gap-6">
             <div class="w-40 h-28 bg-black/80 rounded-2xl border border-white/20 flex flex-col items-center justify-center text-white shadow-lg transition hover:scale-105">
-                <span class="text-2xl mb-2">🤔</span>
+                <span class="text-2xl mb-2"><img src="https://em-content.zobj.net/source/microsoft-teams/337/thinking-face_1f914.png" alt="Thinking" class="inline w-7 h-7 align-middle" /></span>
                 <span class="text-sm">Who am I?</span>
             </div>
             <div class="w-40 h-28 bg-black/80 rounded-2xl border border-white/20 flex flex-col items-center justify-center text-white shadow-lg transition hover:scale-105">
@@ -49,7 +111,7 @@
                 <span class="text-sm">Show my projects</span>
             </div>
             <div class="w-40 h-28 bg-black/80 rounded-2xl border border-white/20 flex flex-col items-center justify-center text-white shadow-lg transition hover:scale-105">
-                <span class="text-2xl mb-2">😊</span>
+                <span class="text-2xl mb-2"><img src="https://em-content.zobj.net/source/microsoft-teams/337/smiling-face-with-smiling-eyes_1f60a.png" alt="Smiling" class="inline w-7 h-7 align-middle" /></span>
                 <span class="text-sm">Show off my skills!</span>
             </div>
             <div class="w-40 h-28 bg-black/80 rounded-2xl border border-white/20 flex flex-col items-center justify-center text-white shadow-lg transition hover:scale-105">

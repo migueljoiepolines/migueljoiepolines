@@ -12,3 +12,21 @@ body {
     vertical-align: middle;
     margin-left: 8px;
 }
+
+#ask-input::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+#ask-input {
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;  /* For Firefox */
+}
+
+#chat-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+#chat-container {
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;  /* For Firefox */
+}

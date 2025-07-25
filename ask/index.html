@@ -5,29 +5,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <script type="module" src="answers.js"></script>
-    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../magic-cursor.css">
+    <script type="module" src="../answers.js"></script>
+    <script type="module" src="../script.js"></script>
+    <script src="../magic-cursor.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0/dist/tf.min.js"></script>
+    <style>
+        #main-content-wrapper {
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.5s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.getElementById('back-button');
+            const mainContentWrapper = document.getElementById('main-content-wrapper');
+
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Add fade-out animation
+                    mainContentWrapper.classList.add('fade-out');
+                    
+                    // Navigate after animation completes
+                    setTimeout(() => {
+                        window.location.href = '../index.html';
+                    }, 500);
+                });
+            }
+        });
+    </script>
 </head>
 
-<body class="font-figtree min-h-screen bg-black bg-[url('image/bg-1.png')] bg-cover bg-center flex flex-col p-0">
-    <div class="w-full flex flex-col items-center justify-center text-center min-h-screen pt-10">
+<body class="font-figtree min-h-screen bg-black bg-[url('../image/bg-1.png')] bg-cover bg-center bg-fixed flex flex-col p-0">
+    <!-- Back button -->
+    <button id="back-button" class="fixed top-6 left-6 z-50 w-12 h-12 rounded-full bg-black/80 border border-white/20 hover:bg-white/10 transition flex items-center justify-center" aria-label="Back to home">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    
+    <div id="main-content-wrapper" class="w-full flex flex-col items-center justify-start text-center h-screen pt-[26px]">
 
-        <div id="chat-container" class="w-full max-w-3xl mx-auto flex-1 overflow-y-auto mb-40 flex flex-col gap-6"></div>
+        <div id="chat-container" class="w-full max-w-3xl mx-auto flex-1 overflow-y-auto pb-6 flex flex-col gap-6 px-4 min-h-0 max-h-[calc(100vh-280px)]"></div>
 
-        <!-- Fixed bottom bar -->
-        <div class="fixed bottom-0 left-0 w-full flex flex-col items-center justify-center bg-black/80 pt-6 pb-8 z-50">
+    </div>
+    <!-- Fixed bottom bar -->
+    <div class="fixed bottom-0 left-0 w-full flex flex-col items-center justify-center pt-6 pb-8 z-50 backdrop-blur-lg border-t border-white/10">
             <div class="flex items-center justify-center w-[900px] h-auto mx-auto mb-6 max-w-full">
                 <textarea
                     id="ask-input"
                     placeholder="Something you wanna ask?"
                     rows="1"
-                    class="w-full rounded-full bg-black/80 border border-white/20 text-white px-8 py-6 text-lg focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-300 shadow-lg resize-none transition-all"
+                    class="w-full rounded-full bg-black/80 border border-white/20 text-white pl-8 pr-20 py-6 text-lg focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-300 shadow-lg resize-none transition-all"
                     style="min-height:56px; max-height:180px; overflow-y:auto;"
                 ></textarea>
                 <button

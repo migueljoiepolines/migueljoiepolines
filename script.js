@@ -5,6 +5,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const button = textarea.nextElementSibling;
     const chatContainer = document.getElementById('chat-container');
 
+    // Function to handle the initial question from the URL
+    function handleInitialQuestion() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const question = urlParams.get('q');
+        if (question) {
+            // Clean the URL by removing the query parameters
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+            
+            // Process the question
+            textarea.value = question;
+            button.click();
+        }
+    }
+
     // Real AI response function using Node.js backend
     async function getAIResponse(question) {
         try {
@@ -132,21 +147,40 @@ document.addEventListener('DOMContentLoaded', function () {
         return originalAnswer;
     }
 
+    function scrollToBottom() {
+        // Force immediate scroll
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        
+        // Also use requestAnimationFrame to ensure it happens after DOM updates
+        requestAnimationFrame(() => {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        });
+        
+        // Double-check with a small timeout as backup
+        setTimeout(() => {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, 50);
+    }
+
     function appendMessage(text, sender = 'bot', typing = false) {
+        // Detect if we're in a subfolder to adjust image paths
+        const isInSubfolder = window.location.pathname.includes('/ask/');
+        const imagePath = isInSubfolder ? '../image/' : 'image/';
+        
         const msgDiv = document.createElement('div');
         msgDiv.className = sender === 'user'
             ? 'flex justify-end'
             : 'flex justify-start';
         const bubble = document.createElement('div');
-        bubble.className = 'max-w-[80%] px-6 py-4 rounded-2xl shadow-lg bg-black/80 border border-white/10 text-white text-base flex items-center gap-2 text-left';
+        bubble.className = 'max-w-[80%] px-6 py-4 rounded-2xl shadow-lg bg-black/80 border border-white/10 text-white text-base flex items-start gap-2 text-left';
         if (sender === 'bot') {
-            bubble.innerHTML = `<span class="bot-icon mr-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z" /></svg></span><span class="ai-text"></span>`;
+            bubble.innerHTML = `<span class="bot-icon flex-shrink-0 mt-1"><img src="${imagePath}logo.png" alt="Logo" class="h-5 w-4" /></span><span class="ai-text"></span>`;
         } else {
-            bubble.innerHTML = `<span>${text}</span><span class="user-icon ml-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>`;
+            bubble.innerHTML = `<span>${text}</span><span class="user-icon ml-2"><img src="${imagePath}userdp.png" class="h-5 w-5 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>`;
         }
         msgDiv.appendChild(bubble);
         chatContainer.appendChild(msgDiv);
-        chatContainer.scrollTop = chatContainer.scrollHeight;
+        scrollToBottom();
 
         // Typing animation for bot
         if (sender === 'bot' && typing) {
@@ -155,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
             function typeChar() {
                 if (i <= text.length) {
                     aiText.textContent = text.slice(0, i);
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    scrollToBottom();
                     i++;
                     setTimeout(typeChar, 8 + Math.random() * 30);
                 }
@@ -168,10 +202,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const question = textarea.value.trim();
         if (question) {
             appendMessage(question, 'user');
+            scrollToBottom(); // Ensure user message is visible
             
             // Show loading message
             appendMessage('Thinking...', 'bot', false);
             const lastMessage = chatContainer.lastElementChild;
+            scrollToBottom(); // Ensure loading message is visible
             
             try {
                 // Get AI response
@@ -179,16 +215,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 // Remove loading message
                 chatContainer.removeChild(lastMessage);
+                scrollToBottom(); // Scroll after removing loading message
                 
                 // Show AI response with typing animation
                 setTimeout(() => {
                     appendMessage(aiResponse, 'bot', true);
+                    scrollToBottom(); // Ensure AI response starts visible
                 }, 200);
             } catch (error) {
                 // Remove loading message and show fallback
                 chatContainer.removeChild(lastMessage);
+                scrollToBottom(); // Scroll after removing loading message
                 setTimeout(() => {
                     appendMessage(getAnswer(question), 'bot', true);
+                    scrollToBottom(); // Ensure fallback response starts visible
                 }, 200);
             }
             
@@ -203,4 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button.click();
         }
     });
+
+    // Handle the initial question when the page loads
+    handleInitialQuestion();
 });
