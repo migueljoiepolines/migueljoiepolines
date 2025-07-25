@@ -1,0 +1,30 @@
+/* ===== OPTIMIZED BACKGROUND EFFECTS ===== */
+
+/* Background Blur Effect with Subtle Movement - Performance Optimized */
+body::before {
+    content: '';
+    position: fixed;
+    top: -2%;
+    left: -2%;
+    width: 104%;
+    height: 104%;
+    background: url('../image/bg-4.jpg') center/cover;
+    filter: blur(1.5px); /* Reduced blur for better performance */
+    z-index: -2;
+    animation: backgroundFloat 45s ease-in-out infinite; /* Slower animation */
+    will-change: transform;
+    transform: translateZ(0) scale(1.01); /* Hardware acceleration with minimal scale */
+}
+
+/* Dark Overlay for Eye Comfort */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* Slightly darker for better contrast */
+    z-index: -1;
+    transform: translateZ(0); /* Hardware acceleration */
+}

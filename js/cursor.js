@@ -1,3 +1,5 @@
+/* ===== MAGIC CURSOR SYSTEM ===== */
+
 document.addEventListener('DOMContentLoaded', () => {
     // Only run on non-touch devices
     if (window.matchMedia("(pointer: fine)").matches) {
@@ -11,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let lastX = 0;
         let lastY = 0;
         let isMoving = false;
-        let animationFrameId;
 
         window.addEventListener('mousemove', (e) => {
             lastX = e.clientX;

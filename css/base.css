@@ -1,0 +1,63 @@
+/* ===== OPTIMIZED GLOBAL STYLES ===== */
+
+/* Performance Optimizations */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Figtree', sans-serif;
+    /* Hardware acceleration for smooth scrolling */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize text rendering */
+body, input, textarea, button {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== ICON STYLES ===== */
+.bot-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.user-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+/* ===== OPTIMIZED SCROLLBAR HIDING ===== */
+#ask-input::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+#ask-input {
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;  /* For Firefox */
+    /* Performance optimization */
+    will-change: scroll-position;
+    transform: translateZ(0);
+}
+
+#chat-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+#chat-container {
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;  /* For Firefox */
+    /* Performance optimization */
+    will-change: scroll-position;
+    transform: translateZ(0);
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+}

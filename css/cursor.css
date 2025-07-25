@@ -1,3 +1,5 @@
+/* ===== MAGIC CURSOR EFFECTS ===== */
+
 /* Hides the default cursor on non-touch devices */
 @media (pointer: fine) {
     body.magic-cursor, body.magic-cursor * {

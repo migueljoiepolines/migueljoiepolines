@@ -5,48 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ask - Miguel Joie</title>
-    <link rel="icon" type="image/png" href="image/logo1.png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="magic-cursor.css">
-    <script type="module" src="answers.js"></script>
-    <script type="module" src="script.js"></script>
-    <script src="magic-cursor.js" defer></script>
+    <link rel="icon" type="image/png" href="image/logo2.png">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/answers.js"></script>
+    <script type="module" src="js/chat.js"></script>
+    <script src="js/particles.js" defer></script>
+    <script src="js/cursor.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0/dist/tf.min.js"></script>
-    <style>
-        #main-content-wrapper {
-            animation: fadeIn 0.7s ease-out forwards;
-        }
-
-        .fade-out {
-            animation: fadeOut 0.5s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const backButton = document.getElementById('back-button');
@@ -69,7 +37,10 @@
     </script>
 </head>
 
-<body class="font-figtree min-h-screen bg-black bg-[url('image/bg-1.png')] bg-cover bg-center bg-fixed flex flex-col p-0">
+<body class="font-figtree min-h-screen bg-black flex flex-col p-0">
+    <!-- Colorful Particles -->
+    <div class="particles" id="particles"></div>
+    
     <!-- Back button -->
     <button id="back-button" class="fixed top-6 left-6 z-50 w-12 h-12 rounded-full bg-black/80 border border-white/20 hover:bg-white/10 transition flex items-center justify-center" aria-label="Back to home">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,11 +60,11 @@
                     id="ask-input"
                     placeholder="Something you wanna ask?"
                     rows="1"
-                    class="w-full rounded-full bg-black/80 border border-white/20 text-white pl-8 pr-20 py-6 text-lg focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-300 shadow-lg resize-none transition-all"
+                    class="glass-effect w-full rounded-full text-white pl-8 pr-20 py-6 text-lg focus:outline-none placeholder-gray-300 resize-none"
                     style="min-height:56px; max-height:180px; overflow-y:auto;"
                 ></textarea>
                 <button
-                    class="ml-[-64px] rounded-full p-4 border border-white/20 hover:bg-white/10 transition h-[56px] w-[56px] flex items-center justify-center"
+                    class="glass-effect ml-[-64px] rounded-full p-4 h-[56px] w-[56px] flex items-center justify-center"
                     aria-label="Send"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

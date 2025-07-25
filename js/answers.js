@@ -3,16 +3,16 @@ export function getAnswer(question) {
 
     const defaultAnswers = [
         "Hmm, that one's a bit tricky. Try rephrasing or asking something else about me!",
-        "Oops! I didn’t quite catch that. Could you ask it differently?",
+        "Oops! I didn't quite catch that. Could you ask it differently?",
         "I'm still learning! Maybe try a different question about Miguel Joie?",
         "I wish I had an answer for that — mind asking something else?",
-        "Yikes, I don’t know how to respond to that yet. Try asking about my skills or experience!",
-        "That’s outside my memory banks! Ask something related to Miguel Joie S. Polines.",
+        "Yikes, I don't know how to respond to that yet. Try asking about my skills or experience!",
+        "That's outside my memory banks! Ask something related to Miguel Joie S. Polines.",
         "I'm scratching my digital head... try a simpler or more specific question?",
         "That flew right over my circuits. Ask me something else I might know!",
-        "Uh-oh, I couldn’t understand that one. Want to ask about my education or work?",
+        "Uh-oh, I couldn't understand that one. Want to ask about my education or work?",
         "I don't know how to answer that, but I'm great with questions about my projects or background!",
-        "Sorry, I didn’t get that. Maybe reword your question?",
+        "Sorry, I didn't get that. Maybe reword your question?",
         "I might not know everything — but I do know Miguel! Ask me about him!",
         "You got me there! Try asking something related to my career, skills, or portfolio.",
         "Hmm, my knowledge stops right there. Could you give it another shot?",
@@ -20,14 +20,14 @@ export function getAnswer(question) {
         "I'm confused... but curious! Try asking something about my experience or achievements.",
         "Not sure how to respond to that! If it's about Miguel, I might have an answer.",
         "That went over my virtual head! Rephrase it or ask about something like programming or design?",
-        "Miguel didn’t teach me how to respond to that one. Try something else!",
-        "That’s a mystery to me. But ask about my projects, studies, or creative work — I love those topics!"
+        "Miguel didn't teach me how to respond to that one. Try something else!",
+        "That's a mystery to me. But ask about my projects, studies, or creative work — I love those topics!"
     ];
 
     const whoAmIAnswers = [
         "I'm Miguel Joie S. Polines — a UI/UX Designer and Developer based in Cavite, Philippines. I graduated Magna Cum Laude with a degree in Information Technology, and I have experience working on web, mobile, and academic projects. I'm passionate about creating intuitive and visually engaging user experiences. Feel free to ask about my background, skills, or the things I've built!",
-        "Hey there! I'm Miguel Joie S. Polines, a creative tech enthusiast who loves combining design and development. I specialize in UI/UX, web technologies, and Android development, and I've also worked as a college instructor. If you're curious about my journey, skills, or the projects I’ve worked on, just ask away!",
-        "Nice to meet you! I'm Miguel, a Filipino designer and developer with a love for clean interfaces and purposeful technology. I've built apps, designed systems, taught IT subjects, and collaborated with teams on real-world projects. I’m always eager to learn and grow — let me know what you’d like to know about me.",
+        "Hey there! I'm Miguel Joie S. Polines, a creative tech enthusiast who loves combining design and development. I specialize in UI/UX, web technologies, and Android development, and I've also worked as a college instructor. If you're curious about my journey, skills, or the projects I've worked on, just ask away!",
+        "Nice to meet you! I'm Miguel, a Filipino designer and developer with a love for clean interfaces and purposeful technology. I've built apps, designed systems, taught IT subjects, and collaborated with teams on real-world projects. I'm always eager to learn and grow — let me know what you'd like to know about me.",
         "I'm Miguel Joie S. Polines, and I bring together creativity, logic, and passion in everything I build. Whether it's designing interfaces, coding applications, or mentoring students, I enjoy turning ideas into functional solutions. I'm currently exploring new ways to grow as a developer and designer. Ask me anything about my work, background, or future goals!",
         "I'm Miguel — a detail-oriented designer and developer with a background in both academics and freelance work. I've handled everything from UI/UX design to full-stack development and even video editing. I believe in continuous learning and creating tech that actually helps people. Want to know more about what I do or how I got here?"
     ];
@@ -46,19 +46,19 @@ export function getAnswer(question) {
         return "Do you mean Jessa? She's my girlfriend, currently studying Bachelor of Science In Education Major in English. She's a wonderful person and a great support in my life! Now, you wanna ask something about me, as a professional?";
     }
     if (q.includes('project') || q.includes('projects') || q.includes('work')) {
-        return "One of the most notable projects I've worked on is called Astrocards, an Android-based Augmented Reality educational app designed specifically to help junior high school students learn about astronomy in a fun and interactive way. It was the highlight of my thesis and received excellent feedback during our university's research colloquium. I’ve also built other meaningful projects like FitConnect, which focuses on promoting community support in fitness. If you're curious, feel free to check out the 'Show my projects' section to explore more of what I've created.";
+        return "One of the most notable projects I've worked on is called Astrocards, an Android-based Augmented Reality educational app designed specifically to help junior high school students learn about astronomy in a fun and interactive way. It was the highlight of my thesis and received excellent feedback during our university's research colloquium. I've also built other meaningful projects like FitConnect, which focuses on promoting community support in fitness. If you're curious, feel free to check out the 'Show my projects' section to explore more of what I've created.";
     }
 
     if (q.includes('skill') || q.includes('skills') || q.includes('proficient')) {
-        return "I’ve developed a wide range of skills through academic work, internships, and hands-on experience. I’m proficient in HTML, CSS, JavaScript, PHP, MySQL, Java, and C#, and I regularly work with design tools like Figma and development environments like Visual Studio and WAMP Server. I also have experience in Android app development, game prototyping using Unity, and even video editing. What I really enjoy is learning how to bridge the gap between user experience and functional code, so I always try to stay updated with industry trends and frameworks.";
+        return "I've developed a wide range of skills through academic work, internships, and hands-on experience. I'm proficient in HTML, CSS, JavaScript, PHP, MySQL, Java, and C#, and I regularly work with design tools like Figma and development environments like Visual Studio and WAMP Server. I also have experience in Android app development, game prototyping using Unity, and even video editing. What I really enjoy is learning how to bridge the gap between user experience and functional code, so I always try to stay updated with industry trends and frameworks.";
     }
 
     if (q.includes('contact') || q.includes('email') || q.includes('reach you')) {
-        return "You can easily reach me through the contact links provided in the 'Where to contact?' section of this page. Whether you’re reaching out for a potential collaboration, freelance opportunity, or just to connect professionally, I’ll do my best to respond as soon as I can. I’m always open to discussing exciting projects or ideas — and I appreciate it when someone takes the time to reach out.";
+        return "You can easily reach me through the contact links provided in the 'Where to contact?' section of this page. Whether you're reaching out for a potential collaboration, freelance opportunity, or just to connect professionally, I'll do my best to respond as soon as I can. I'm always open to discussing exciting projects or ideas — and I appreciate it when someone takes the time to reach out.";
     }
 
     if (q.includes('who are you') || q.includes('your name') || q.includes('who is miguel')) {
-        return "I'm Miguel Joie S. Polines, a UI/UX Designer and Developer proudly based in Cavite, Philippines. I’m passionate about creating meaningful digital experiences, whether that’s through intuitive design, clean code, or helping others understand technology better. I’ve worn different hats — from instructor and developer to designer and support tech — and I love building things that make people's lives easier or more inspiring. If you’d like to get to know more about my background, feel free to keep asking!";
+        return "I'm Miguel Joie S. Polines, a UI/UX Designer and Developer proudly based in Cavite, Philippines. I'm passionate about creating meaningful digital experiences, whether that's through intuitive design, clean code, or helping others understand technology better. I've worn different hats — from instructor and developer to designer and support tech — and I love building things that make people's lives easier or more inspiring. If you'd like to get to know more about my background, feel free to keep asking!";
     }
 
     if (q.includes('education') || q.includes('study') || q.includes('school') || q.includes('graduate')) {
@@ -66,7 +66,7 @@ export function getAnswer(question) {
     }
 
     if (q.includes('experience') || q.includes('job') || q.includes('work experience')) {
-        return "I’ve been lucky to gain experience in different fields — I worked as a UI/UX Intern at Pixel8 Web Solutions & Consultancy Inc., and I also served as a college instructor teaching core IT subjects to students. In addition to those roles, I’ve been a freelancer for years, offering computer repair services and assisting with system setups and troubleshooting. These diverse roles have given me a well-rounded perspective on both the technical and human sides of technology, which I believe is important in any career.";
+        return "I've been lucky to gain experience in different fields — I worked as a UI/UX Intern at Pixel8 Web Solutions & Consultancy Inc., and I also served as a college instructor teaching core IT subjects to students. In addition to those roles, I've been a freelancer for years, offering computer repair services and assisting with system setups and troubleshooting. These diverse roles have given me a well-rounded perspective on both the technical and human sides of technology, which I believe is important in any career.";
     }
 
     if (q.includes('thesis') || q.includes('research') || q.includes('colloquium')) {
@@ -74,7 +74,7 @@ export function getAnswer(question) {
     }
 
     if (q.includes('fitconnect') || q.includes('exercise app') || q.includes('fitness app')) {
-        return "FitConnect is a project I designed and developed with the idea of encouraging people to stay motivated in their fitness journey by connecting with others who share the same goals. Its tagline, 'Inspire, be inspired...', captures the whole purpose of the app — to build a sense of community around health and wellness. The interface was carefully designed to feel inviting and simple, making it easy for users to communicate and share progress. It's one of my favorite conceptual projects, and I’d love to build it into a full platform someday.";
+        return "FitConnect is a project I designed and developed with the idea of encouraging people to stay motivated in their fitness journey by connecting with others who share the same goals. Its tagline, 'Inspire, be inspired...', captures the whole purpose of the app — to build a sense of community around health and wellness. The interface was carefully designed to feel inviting and simple, making it easy for users to communicate and share progress. It's one of my favorite conceptual projects, and I'd love to build it into a full platform someday.";
     }
 
     if (q.includes('teach') || q.includes('teaching') || q.includes('instructor') || q.includes('professor')) {
@@ -82,7 +82,7 @@ export function getAnswer(question) {
     }
 
     if (q.includes('freelance') || q.includes('freelancing') || q.includes('services')) {
-        return "I've been doing freelance work since my senior high school days, mostly focused on computer repair and maintenance. I’ve helped clients with system reformatting, hardware troubleshooting, software installation, and general tech support. While the earnings were modest, it helped me support my education and gave me hands-on experience that complemented what I was learning in school. I also accept small academic and multimedia-related projects whenever I can.";
+        return "I've been doing freelance work since my senior high school days, mostly focused on computer repair and maintenance. I've helped clients with system reformatting, hardware troubleshooting, software installation, and general tech support. While the earnings were modest, it helped me support my education and gave me hands-on experience that complemented what I was learning in school. I also accept small academic and multimedia-related projects whenever I can.";
     }
 
     if (q.includes('tools') || q.includes('software') || q.includes('programs you use')) {
@@ -90,7 +90,7 @@ export function getAnswer(question) {
     }
 
     if (q.includes('goal') || q.includes('aspiration') || q.includes('dream')) {
-        return "My long-term goal is to become a strong full-stack developer while also growing as a designer who deeply understands users and how they interact with technology. I want to build apps and platforms that actually solve real problems or inspire people in their daily lives. I’m also curious about the fields of software testing, quality assurance, and project leadership. Whether I pursue design, development, or even teaching again someday, I just want to keep learning and doing meaningful work.";
+        return "My long-term goal is to become a strong full-stack developer while also growing as a designer who deeply understands users and how they interact with technology. I want to build apps and platforms that actually solve real problems or inspire people in their daily lives. I'm also curious about the fields of software testing, quality assurance, and project leadership. Whether I pursue design, development, or even teaching again someday, I just want to keep learning and doing meaningful work.";
     }
 
     if (q.includes('quote') || q.includes('motto') || q.includes('life saying')) {

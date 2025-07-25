@@ -1,0 +1,9 @@
+/* ===== MAIN CSS FILE ===== */
+/* Import all organized CSS modules */
+
+@import url('base.css');
+@import url('animations.css');
+@import url('glassmorphism.css');
+@import url('background.css');
+@import url('particles.css');
+@import url('cursor.css');

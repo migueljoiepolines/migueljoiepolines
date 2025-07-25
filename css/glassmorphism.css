@@ -1,0 +1,70 @@
+/* ===== OPTIMIZED GLASSMORPHISM EFFECTS ===== */
+
+/* iOS-style Dark Liquid Glass Effect - Performance Optimized */
+.glass-effect {
+    backdrop-filter: blur(12px) saturate(150%); /* Reduced blur for performance */
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.4), /* Reduced shadow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: transform 0.15s ease, background 0.15s ease, border 0.15s ease; /* Faster transitions */
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.glass-effect:hover {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px) translateZ(0); /* Reduced movement */
+}
+
+.glass-effect:focus-within {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 0 0 2px rgba(255, 255, 255, 0.04), /* Reduced glow */
+        0 4px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Cards - Optimized */
+.glass-card {
+    backdrop-filter: blur(10px) saturate(150%); /* Reduced blur */
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3), /* Reduced shadow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.15s ease, background 0.15s ease; /* Faster transitions */
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.glass-card:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px) scale(1.01) translateZ(0); /* Reduced scale */
+}
+
+/* Glass Effect for Chat Messages - Performance Optimized */
+.glass-message {
+    backdrop-filter: blur(8px) saturate(140%); /* Further reduced blur for chat */
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 3px 12px rgba(0, 0, 0, 0.3), /* Lighter shadow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.1s ease, background 0.1s ease; /* Faster transitions */
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.glass-message:hover {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translateY(-0.5px) translateZ(0); /* Minimal movement */
+}
