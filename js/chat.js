@@ -20,39 +20,55 @@ document.addEventListener('DOMContentLoaded', function () {
     async function getAIResponse(question) {
         // IMPORTANT: Replace with your actual Google AI Studio API key.
         // Get your free key from https://aistudio.google.com/
-        const API_KEY = 'AIzaSyC7XXuvVJCFOoc2sMbdhoR5brf6Ifc_inY';
+        const API_KEY = 'AIzaSyCakf9zjsg5MY_Ug6PJHLpiuZu_cXCEJ94';
+
+        // Pre-cached responses for common questions to avoid API calls
+        const quickAnswers = {
+            'who are you': "Hi! I'm Miguel Joie, a UI/UX Designer and Developer from the Philippines. I create apps and teach at university!",
+            'what do you do': "I'm a UI/UX Designer and Developer! I build apps like Astrocards and FitConnect, and teach Computer Science.",
+            'your skills': "I work with HTML/CSS/JS, PHP/MySQL, Figma for design, and Unity for AR development!",
+            'contact you': "You can reach me at polinesmigueljoie@gmail.com - I'd love to connect!",
+            'your email': "My email is polinesmigueljoie@gmail.com",
+            'your projects': "I've built Astrocards (AR astronomy app) and FitConnect (fitness community app). Always working on something new!",
+            'your education': "I graduated Magna Cum Laude with a BS in Information Technology from Cavite State University."
+        };
+
+        // Check for quick answers first
+        const lowerQ = question.toLowerCase().trim();
+        for (const [key, answer] of Object.entries(quickAnswers)) {
+            if (lowerQ.includes(key) || lowerQ === key) {
+                return answer;
+            }
+        }
 
         // For security, it's better to use a backend proxy to hide your API key.
         // But for a simple client-side project, this is a quick way to get started.
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
+        // Ultra-minimal context to save maximum tokens
+        function getContextForQuestion(question) {
+            const q = question.toLowerCase();
+            let ctx = "Miguel Joie, UI/UX Dev, Philippines. ";
+            
+            if (q.includes('skill')||q.includes('tech')) ctx += "HTML/CSS/JS, PHP, Figma. ";
+            else if (q.includes('education')||q.includes('school')) ctx += "BS IT, Magna Cum Laude. ";
+            else if (q.includes('project')||q.includes('work')||q.includes('app')) ctx += "Astrocards AR, FitConnect apps. ";
+            else if (q.includes('contact')||q.includes('email')) ctx += "polinesmigueljoie@gmail.com ";
+            else ctx += "IT grad, app creator. ";
+            
+            return ctx + "Be friendly, minimum of 2 sentences, maximum of 4 sentences.";
+        }
+
         const requestBody = {
             contents: [{
                 parts: [{
-                    // We add some context for the AI to define its personality.
-                    text: `
-                    You are Miguel Joie S. Polines, a passionate UI/UX Designer and Developer from Cavite, Philippines. 
-                    
-                    Your background:
-                    - COLLEGE: Graduated Magna Cum Laude with BS Information Technology from Cavite State University (2020-2024)
-                    - HIGHSCHOOL: Graduated with Honors taking TVL-ICT Computer Programming (2018-2020)
-                    - UI/UX Intern at Pixel8 Web Solutions & Consultancy Inc. (2024)
-                    - College Instructor at Cavite State University (taught core Computer Science and IT subjects including Discrete Mathematics, Integrated Programming and Technologies, Web Systems (Frontend and BackendDevelopment), System Integration and Architecture (SIA), andInformation Management with a focus on PHP, MySQL and project management frameworks such as Agile and RAD.)
-                    - Freelancer since senior high school (computer repair, web development, tech support)
-                    - Computer Database Management Intern (2019-2020) at Cavite Legislative Office
-                    - Created Astrocards (AR astronomy education app for Junior High School students)
-                    - Proficient in Figma Prototyping and UI Design
-                    - Built FitConnect (fitness community app)
-                    - Skills: HTML, CSS, JavaScript, PHP, MySQL, Java, C#, Figma, Unity, Git
-                    - Favorite Quote: Two roads diverged in a wood, and I— I took the one less traveled by, And that has made all the difference.
-                    - Email: polinesmigueljoie@gmail.com 
-
-                    IMPORTANT: Keep your responses SHORT and CONCISE - 2-5 sentences maximum but not so short replies, not short and not too long. Be conversational, friendly, professional and helpful, but don't overwhelm with too much information at once. If the user wants more details, they can ask follow-up questions. 
-                    BE PROFESSIONAL BUT DON'T REPLIED TO SERIOUS! JUST TALK LIKE A FRIEND!
-
-                    Now, here is the user's question: ${question}`
+                    text: `${getContextForQuestion(question)}\n\nQ: ${question}`
                 }]
             }],
+            generationConfig: {
+                maxOutputTokens: 100, // Limit response length
+                temperature: 0.7
+            },
             // Add safety settings to prevent harmful content
             safetySettings: [
                 { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
